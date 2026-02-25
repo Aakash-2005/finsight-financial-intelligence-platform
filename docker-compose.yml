@@ -1,0 +1,18 @@
+services:
+  # This compose file no longer starts a MongoDB container.
+  # The app will connect to a MongoDB instance running on the host machine.
+  # On Windows Docker, the host can be reached at `host.docker.internal`.
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      # Connect to a MongoDB running on the host machine
+      MONGODB_URI: mongodb://host.docker.internal:27017/finsight
+      MONGODB_DB_NAME: finsight
+      JWT_SECRET: change-me-to-a-long-random-secret
+      DEMO_EMAIL: demo@finsight.app
+      DEMO_PASSWORD: demo12345
+
+
